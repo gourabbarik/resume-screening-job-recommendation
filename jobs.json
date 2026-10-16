@@ -1,0 +1,26 @@
+[
+  {
+    "title": "Data Analyst",
+    "description": "Analyze datasets using Python, SQL, Excel, Pandas, NumPy, statistics, data visualization, Matplotlib, Power BI, and Tableau. Communicate insights and solve business problems."
+  },
+  {
+    "title": "Python Developer",
+    "description": "Develop Python applications using Python, Flask, Django, SQL, Git, GitHub, REST APIs, debugging, and problem solving."
+  },
+  {
+    "title": "Machine Learning Intern",
+    "description": "Build machine learning models using Python, Pandas, NumPy, Scikit-learn, statistics, data preprocessing, classification, regression, and model evaluation."
+  },
+  {
+    "title": "Java Developer",
+    "description": "Build software using Java, SQL, object oriented programming, data structures, algorithms, Git, debugging, and problem solving."
+  },
+  {
+    "title": "Frontend Developer",
+    "description": "Create responsive websites using HTML, CSS, JavaScript, React, Git, GitHub, and communication skills."
+  },
+  {
+    "title": "NLP Intern",
+    "description": "Process text data using Python, NLP, natural language processing, machine learning, Scikit-learn, Pandas, NumPy, and text preprocessing."
+  }
+]

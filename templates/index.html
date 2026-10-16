@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Resume Match & Job Finder</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <main class="container">
+    <header class="hero">
+      <p class="eyebrow">PYTHON · NLP · MACHINE LEARNING</p>
+      <h1>Resume Match & Job Finder</h1>
+      <p>Compare your resume with a job description, explore skills, and find relevant sample roles.</p>
+    </header>
+
+    {% if error %}
+      <div class="alert" role="alert">{{ error }}</div>
+    {% endif %}
+
+    <section class="panel">
+      <h2>Analyze your resume</h2>
+      <form method="POST" enctype="multipart/form-data">
+        <label for="resume">Resume file (PDF, DOCX, or TXT; max 5 MB)</label>
+        <input id="resume" name="resume" type="file" accept=".pdf,.docx,.txt" required>
+
+        <label for="job_description">Job description</label>
+        <textarea id="job_description" name="job_description" rows="9"
+          placeholder="Paste the job description here..." required>{{ job_description }}</textarea>
+
+        <button type="submit">Analyze resume</button>
+      </form>
+    </section>
+
+    {% if result %}
+      <section class="panel results">
+        <h2>Match analysis</h2>
+        <p class="note">These scores are text/skill similarity indicators, not hiring probabilities or guarantees.</p>
+
+        <div class="score-grid">
+          <div class="score-card">
+            <span class="score">{{ result.match_score }}%</span>
+            <span>Overall match indicator</span>
+          </div>
+          <div class="score-card">
+            <span class="score">{{ result.similarity }}%</span>
+            <span>TF-IDF text similarity</span>
+          </div>
+          <div class="score-card">
+            <span class="score">{{ result.skill_coverage }}%</span>
+            <span>Detected job-skill coverage</span>
+          </div>
+        </div>
+
+        <div class="two-col">
+          <div>
+            <h3>Skills detected in resume</h3>
+            {% if result.resume_skills %}
+              <div class="chips">
+                {% for skill in result.resume_skills %}<span class="chip">{{ skill }}</span>{% endfor %}
+              </div>
+            {% else %}
+              <p>No skills from the current vocabulary were detected.</p>
+            {% endif %}
+          </div>
+          <div>
+            <h3>Skills in job description</h3>
+            {% if result.job_skills %}
+              <div class="chips">
+                {% for skill in result.job_skills %}<span class="chip">{{ skill }}</span>{% endfor %}
+              </div>
+            {% else %}
+              <p>No skills from the current vocabulary were detected.</p>
+            {% endif %}
+          </div>
+        </div>
+
+        <div class="two-col">
+          <div>
+            <h3>Matching skills</h3>
+            {% if result.matched_skills %}
+              <div class="chips">
+                {% for skill in result.matched_skills %}<span class="chip good">{{ skill }}</span>{% endfor %}
+              </div>
+            {% else %}
+              <p>No matches detected from the current skill vocabulary.</p>
+            {% endif %}
+          </div>
+          <div>
+            <h3>Potential skills to develop</h3>
+            {% if result.missing_skills %}
+              <div class="chips">
+                {% for skill in result.missing_skills %}<span class="chip missing">{{ skill }}</span>{% endfor %}
+              </div>
+            {% else %}
+              <p>All job-description skills in the current vocabulary were detected in the resume.</p>
+            {% endif %}
+          </div>
+        </div>
+      </section>
+
+      <section class="panel">
+        <h2>Recommended sample job roles</h2>
+        <p class="note">Ranked against a small local sample dataset. These are demo roles, not live vacancies.</p>
+        {% for job in result.recommendations %}
+          <article class="job">
+            <div class="job-heading">
+              <h3>{{ job.title }}</h3>
+              <span class="job-score">{{ job.score }}% match indicator</span>
+            </div>
+            <p>{{ job.description }}</p>
+            {% if job.skills %}
+              <div class="chips">
+                {% for skill in job.skills %}<span class="chip">{{ skill }}</span>{% endfor %}
+              </div>
+            {% endif %}
+          </article>
+        {% endfor %}
+      </section>
+    {% endif %}
+
+    <footer>
+      <p>Educational portfolio project. Review results yourself; this tool can miss synonyms, context, and skills not in its vocabulary.</p>
+    </footer>
+  </main>
+</body>
+</html>

@@ -1,0 +1,40 @@
+:root {
+  font-family: Inter, "Segoe UI", Arial, sans-serif;
+  color: #172033;
+  background: #f4f7fb;
+}
+* { box-sizing: border-box; }
+body { margin: 0; }
+.container { width: min(960px, calc(100% - 32px)); margin: 0 auto; padding: 36px 0 56px; }
+.hero { padding: 24px 0 28px; }
+.eyebrow { color: #465fd5; font-size: 12px; font-weight: 800; letter-spacing: .13em; }
+h1 { margin: 8px 0; font-size: clamp(30px, 5vw, 46px); }
+.hero p:last-child { color: #5d687d; max-width: 680px; line-height: 1.6; }
+.panel { background: #fff; border: 1px solid #e3e8f1; border-radius: 16px; padding: 24px; margin: 18px 0; box-shadow: 0 8px 24px rgba(30, 45, 75, .04); }
+h2 { margin-top: 0; }
+label { display: block; font-weight: 700; margin: 18px 0 8px; }
+input[type=file], textarea { width: 100%; padding: 12px; border: 1px solid #ccd4e2; border-radius: 9px; background: #fff; font: inherit; }
+textarea { resize: vertical; line-height: 1.5; }
+button { margin-top: 18px; padding: 12px 18px; background: #4058cc; color: white; border: 0; border-radius: 9px; font: inherit; font-weight: 700; cursor: pointer; }
+button:hover { background: #3046ad; }
+.alert { padding: 14px 16px; border-radius: 10px; background: #fff1f0; color: #8c2c25; border: 1px solid #ffd2ce; }
+.note { color: #68738a; font-size: 14px; line-height: 1.5; }
+.score-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin: 20px 0 28px; }
+.score-card { padding: 18px; border-radius: 12px; background: #f2f5ff; display: flex; flex-direction: column; gap: 8px; color: #4b5875; }
+.score { color: #2f45b4; font-size: 30px; font-weight: 800; }
+.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 24px; }
+.chips { display: flex; flex-wrap: wrap; gap: 7px; }
+.chip { font-size: 13px; padding: 6px 9px; border-radius: 999px; background: #edf0f6; color: #344057; }
+.chip.good { background: #e4f7ed; color: #17643e; }
+.chip.missing { background: #fff0df; color: #87500d; }
+.job { border-top: 1px solid #e8ecf3; padding: 18px 0; }
+.job-heading { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; }
+.job h3 { margin: 0; }
+.job-score { color: #4058cc; font-weight: 800; white-space: nowrap; font-size: 14px; }
+.job p { color: #5b667a; line-height: 1.55; }
+footer { color: #737e91; font-size: 13px; line-height: 1.5; padding: 12px 4px; }
+@media (max-width: 650px) {
+  .score-grid, .two-col { grid-template-columns: 1fr; }
+  .panel { padding: 18px; }
+  .job-heading { align-items: flex-start; flex-direction: column; }
+}
